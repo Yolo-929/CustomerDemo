@@ -2,27 +2,29 @@ package dao;
 
 import model.Customer;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 import utils.Utils2DB;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class CustomerDao {
+    //添加用户
     public void addCustomer(Customer customer)  {
 
         QueryRunner queryRunner = new QueryRunner(Utils2DB.getDataSource());
 
-
-        String sql = "INSERT INTO customer (id,name, gender, birthday, cellphone, preference, type, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
-
+        String sql = "INSERT INTO customer (id,name, gender, birthday, cellphone, email,preference, type, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
 
         //得到用户传递进来的数据
         String id = customer.getId();
         String name = customer.getName();
         String gender = customer.getGender();
         String cellphone = customer.getCellphone();
-        String email = customer.getEamil();
+        String email = customer.getEmail();
         String preference = customer.getPreference();
         String type = customer.getType();
         String description = customer.getDescription();
@@ -45,4 +47,69 @@ public class CustomerDao {
            // throw new DaoException("添加用户出错了！");
         }
     }
+
+    //得到所有的用户
+    public List<Customer> getAll() {
+
+        QueryRunner queryRunner = new QueryRunner(Utils2DB.getDataSource());
+        String sql = "SELECT * FROM customer";
+        try {
+            List<Customer> customers = (List<Customer>) queryRunner.query(sql, new BeanListHandler(Customer.class));
+
+            //如果集合大于个数大于0，就返回集合，不大于0，就返回null
+            return customers.size() > 0 ? customers : null;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            //throw new DaoException("获取所有的用户出错了！");
+        }
+        return null;
+    }
+
+    public Customer find(String id) {
+
+        QueryRunner queryRunner = new QueryRunner(Utils2DB.getDataSource());
+
+        String sql = "SELECT * FROM customer WHERE id = ?";
+
+        try {
+            Customer customer = (Customer) queryRunner.query(sql, new BeanHandler(Customer.class), new Object[]{id});
+
+            return customer;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            //throw new DaoException("查找用户失败了");
+        }
+        return null;
+    }
+
+    public void update(Customer customer) {
+
+        QueryRunner queryRunner = new QueryRunner(Utils2DB.getDataSource());
+
+        String sql = "UPDATE customer set name=?,gender=?,birthday=?,cellphone=?,email=?,preference=?,type=?,description=?  WHERE id = ?";
+
+        try {
+            queryRunner.update(sql, new Object[]{customer.getName(), customer.getGender(), customer.getBirthday(),customer.getCellphone(), customer.getEmail(), customer.getPreference(), customer.getType(), customer.getDescription(), customer.getId()});
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+            //throw new DaoException("更新失败");
+        }
+    }
+
+    public void delete(String id) {
+        QueryRunner queryRunner = new QueryRunner(Utils2DB.getDataSource());
+
+        String sql = "DELETE from  customer WHERE id = ?";
+        try {
+            queryRunner.update(sql, new Object[]{id});
+        } catch (SQLException e) {
+            e.printStackTrace();
+            //throw new DaoException("删除用户失败了");
+        }
+    }
 }
+

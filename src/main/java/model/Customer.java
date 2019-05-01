@@ -8,7 +8,7 @@ public class Customer {
     private String gender ;
     private Date birthday ;
     private String cellphone ;
-    private String eamil ;
+    private String email ;
     private String preference ;
     private String type ;
     private String description;
@@ -16,13 +16,13 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String id, String name, String gender, Date birthday, String cellphone, String eamil, String preference, String type, String description) {
+    public Customer(String id, String name, String gender, Date birthday, String cellphone, String email, String preference, String type, String description) {
         this.id = id;
         this.name = name;
         this.gender = gender;
         this.birthday = birthday;
         this.cellphone = cellphone;
-        this.eamil = eamil;
+        this.email = email;
         this.preference = preference;
         this.type = type;
         this.description = description;
@@ -68,12 +68,12 @@ public class Customer {
         this.cellphone = cellphone;
     }
 
-    public String getEamil() {
-        return eamil;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEamil(String eamil) {
-        this.eamil = eamil;
+    public void setEamil(String email) {
+        this.email = email;
     }
 
     public String getPreference() {
