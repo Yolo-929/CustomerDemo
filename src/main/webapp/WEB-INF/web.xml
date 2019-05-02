@@ -13,7 +13,7 @@
 
   <servlet-mapping>
     <servlet-name>AddCustomerServlet</servlet-name>
-    <url-pattern>/addServlet</url-pattern>
+    <url-pattern>/addCustomer</url-pattern>
   </servlet-mapping>
 
   <servlet>
@@ -25,5 +25,15 @@
     <servlet-name>AddCustomerController</servlet-name>
     <url-pattern>/addCustomerController</url-pattern>
   </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LookCustomer</servlet-name>
+        <servlet-class>view.LookCustomerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LookCustomer</servlet-name>
+        <url-pattern>/lookCustomer</url-pattern>
+    </servlet-mapping>
 
 </web-app>

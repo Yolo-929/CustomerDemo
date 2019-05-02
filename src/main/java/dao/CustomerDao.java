@@ -4,6 +4,7 @@ import model.Customer;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 import utils.Utils2DB;
 
 import java.sql.SQLException;
@@ -110,6 +111,44 @@ public class CustomerDao {
             e.printStackTrace();
             //throw new DaoException("删除用户失败了");
         }
+    }
+
+    public Long getTotalRecord() {
+
+        QueryRunner queryRunner = new QueryRunner(Utils2DB.getDataSource());
+
+        String sql = "SELECT * FROM customer";
+
+        try {
+            //获取查询的结果,这里改了！！！！
+            Long l = Long.parseLong(queryRunner.query(sql, new ScalarHandler()).toString());
+            return l;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("查询总记录数失败了！");
+        }
+
+    }
+
+    /*查询分页数据*/
+    //获取分页的数据是需要start和end两个变量的【从哪条开始取，取到哪一条】
+    public List<Customer> getPageData(int start, int end) {
+
+        QueryRunner queryRunner = new QueryRunner(Utils2DB.getDataSource());
+
+        String sql = "SELECT * FROM customer LIMIT ?,?";
+
+        try {
+            List<Customer> customers = (List<Customer>) queryRunner.query(sql, new BeanListHandler(Customer.class), new Object[]{start, end});
+
+            return customers;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            //throw new DaoException("获取分页数据失败了！");
+        }
+        return null;
     }
 }
 

@@ -6,13 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
     <title>Title</title>
-</head>
-<body>
 
-<form action="${pageContext.request.contextPath}/addCustomerController">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/customer.js"></script>
+</head>
+
+<body onload="pageInit()">
+<form action="${pageContext.request.contextPath}/addCustomerController" id="form" onsubmit="return makeForm()" method="post">
     <table border="1px">
         <tr>
             <td>用户名：</td>
@@ -73,7 +76,6 @@
             <td><input type="submit" value="增添客户"></td>
             <td><input type="reset" value="重置"></td>
         </tr>
-
     </table>
 </form>
 </body>
