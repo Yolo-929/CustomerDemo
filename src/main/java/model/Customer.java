@@ -72,7 +72,7 @@ public class Customer {
         return email;
     }
 
-    public void setEamil(String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 

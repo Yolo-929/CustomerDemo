@@ -117,11 +117,11 @@ public class CustomerDao {
 
         QueryRunner queryRunner = new QueryRunner(Utils2DB.getDataSource());
 
-        String sql = "SELECT * FROM customer";
+        String sql = "SELECT count(*) FROM customer";
 
         try {
             //获取查询的结果,这里改了！！！！
-            Long l = Long.parseLong(queryRunner.query(sql, new ScalarHandler()).toString());
+            long l = (Long)(queryRunner.query(sql, new ScalarHandler()));
             return l;
 
         } catch (SQLException e) {

@@ -23,11 +23,11 @@
     <table border="1px">
         <tr>
             <td>用户名：</td>
-            <td>密码：</td>
             <td>性别：</td>
             <td>生日：</td>
             <td>电话号码：</td>
             <td>邮箱：</td>
+            <td>爱好</td>
             <td>类型：</td>
             <td>描述：</td>
         </tr>
