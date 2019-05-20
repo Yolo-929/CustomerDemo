@@ -55,13 +55,34 @@ public class BusinessService {
             //第一次查询，就应该设置当前页数是第一页
             page.setCurrentPageCount(1);
 
+            //第一次访问，设置页数范围
+            page.setStartPage(1);
+            page.setEndPage(10);
+
             start = (int) ((page.getCurrentPageCount() - 1) * page.getLinesize());
 
             List<Customer> customers = customerDao.getPageData(start, end);
 
             page.setList(customers);
         } else {
+            //定义页面范围
+            if (page.getCurrentPageCount() <= 10) {
+                page.setStartPage(1);
+                page.setEndPage(10);
+            } else {
+                page.setStartPage((int) (page.getCurrentPageCount() - 4));
+                page.setEndPage((int) (page.getCurrentPageCount() + 5));
 
+                //如果因为加减角标越界了，那么就设置最前10页，或者最后10页
+                if (page.getStartPage() < 1) {
+                    page.setStartPage(1);
+                    page.setEndPage(10);
+                }
+                if (page.getEndPage() > page.getTotalPageCount()) {
+                    page.setEndPage(page.getTotalPageCount());
+                    page.setStartPage(page.getTotalPageCount() - 9);
+                }
+            }
             //如果不是第一次，就把外界传递进来的页数封装到Page对象中
             page.setCurrentPageCount(Long.parseLong(currentPageCount));
 

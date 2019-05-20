@@ -18,6 +18,27 @@ public class Page {
     //当前显示的页数
     private long currentPageCount;
 
+    //记录开始的页数
+    private int startPage;
+    //记录结束的页数
+    private int endPage;
+
+    public int getStartPage() {
+        return startPage;
+    }
+
+    public void setStartPage(int startPage) {
+        this.startPage = startPage;
+    }
+
+    public int getEndPage() {
+        return endPage;
+    }
+
+    public void setEndPage(int endPage) {
+        this.endPage = endPage;
+    }
+
     public List<Customer> getList() {
         return list;
     }

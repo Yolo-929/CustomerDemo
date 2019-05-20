@@ -1,5 +1,3 @@
-<%@ page import="java.util.List" %>
-<%@ page import="model.Customer" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -45,6 +43,10 @@
             </tr>
         </c:forEach>
     </table>
+
+    <jsp:include page="/page.jsp"/>
+
 </c:if>
+
 </body>
 </html>
