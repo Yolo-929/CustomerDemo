@@ -36,4 +36,23 @@
         <url-pattern>/lookCustomer</url-pattern>
     </servlet-mapping>
 
+  <servlet>
+    <servlet-name>DeleteCustomer</servlet-name>
+    <servlet-class>view.DeleteCustomer</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>DeleteCustomer</servlet-name>
+    <url-pattern>/deleteCustomer</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>UpdateCustomerUI</servlet-name>
+    <servlet-class>view.UpdateCustomerUI</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UpdateCustomerUI</servlet-name>
+    <url-pattern>/updateCustomerUI</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -22,7 +22,64 @@ public class Page {
     private int startPage;
     //记录结束的页数
     private int endPage;
+    //记录开始的索引
+    private int startIndex;
 
+    private String url;
+
+    public Page() {
+    }
+
+    //构造函数
+    public Page(int currentPageCount, long totalRecord) {
+
+        //将传递进来的currentPageCount初始化
+        this.currentPageCount = currentPageCount;
+
+        //总页数
+        totalPageCount = (int) (totalRecord % linesize == 0 ? totalRecord / linesize : totalRecord / linesize + 1);
+
+        //总记录数
+        this.totalRecord = totalRecord;
+
+        //开始取数据的位置
+        startIndex = (currentPageCount - 1) * linesize;
+
+        //如果当前页小于10，那么开始页为1，结束页为10就行了
+        if (this.currentPageCount <= 10) {
+            this.startPage = 1;
+            this.endPage = 10;
+        } else {
+            startPage = (int)this.currentPageCount - 4;
+            endPage = (int)this.currentPageCount + 5;
+
+            //加减后页数越界的情况
+            if (startPage < 1) {
+                this.startPage = 1;
+                this.endPage = 10;
+            }
+            if (endPage > totalPageCount) {
+                this.startPage = (int)this.currentPageCount - 9;
+                this.endPage = this.totalPageCount;
+            }
+        }
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public int getStartIndex() {
+        return startIndex;
+    }
+
+    public void setStartIndex(int startIndex) {
+        this.startIndex = startIndex;
+    }
     public int getStartPage() {
         return startPage;
     }

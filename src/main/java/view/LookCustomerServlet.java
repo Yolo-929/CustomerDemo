@@ -12,12 +12,17 @@ import java.io.IOException;
 public class LookCustomerServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         //获取用户想要看的页数，如果是第一次，那肯定为null
         String currentPageCount = req.getParameter("currentPageCount");
 
+        String servletName = this.getServletName();
+
         //调用BusinessService的方法，获取得到所有客户信息
         BusinessService businessService = new BusinessService();
-        Page page  = businessService.getPageData(currentPageCount);
+
+        //把Servlet的url也传递进去
+        Page page = businessService.getPageData(currentPageCount, req.getContextPath() + "/" + servletName);
 
         //把客户信息带过去给jsp页面
         req.setAttribute("page", page);

@@ -28,6 +28,7 @@
             <td>爱好</td>
             <td>类型：</td>
             <td>描述：</td>
+            <td>操作：</td>
         </tr>
 
         <c:forEach items="${page.list}" var="customer">
@@ -40,10 +41,25 @@
                 <td>${customer.preference}</td>
                 <td>${customer.type}</td>
                 <td>${customer.description}</td>
+                <td>
+                    <a href="${pageContext.request.contextPath}/updateCustomerUI?=${customer.id}">修改</a>
+                    <a href="${pageContext.request.contextPath}/deleteCustomer?id=${customer.id}" onclick="return sureDelete()">删除</a>
+                </td>
             </tr>
         </c:forEach>
     </table>
 
+    <script type="text/javascript">
+        function sureDelete() {
+            var b = window.confirm("你确定要删除吗？");
+
+            if(b) {
+                return true;
+            }else {
+                return false;
+            }
+        }
+    </script>
     <jsp:include page="/page.jsp"/>
 
 </c:if>
