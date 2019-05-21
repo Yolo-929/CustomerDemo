@@ -10,41 +10,6 @@
 <html>
 <head>
     <title>Title</title>
-</head>
-<body>
-    当前页数是：[${page.currentPageCount}]&nbsp;&nbsp;&nbsp;
-
-    <%--如果当前的页码大于1，才显示上一页--%>
-    <c:if test="${page.currentPageCount>1}">
-
-        <%--把传递过去的页码-1就行了--%>
-        <a href="${pageContext.request.contextPath}/lookCustomer?currentPageCount=${page.currentPageCount-1}">
-            上一页
-        </a>
-    </c:if>
-
-    <%--提供页数的界面--%>
-    <c:forEach var="pageNum" begin="${page.startPage}" end="${page.endPage}">
-        <a href="${pageContext.request.contextPath}/lookCustomer?currentPageCount=${pageNum}">
-            [${pageNum}]&nbsp;
-        </a>
-    </c:forEach>
-    <%--如果当前的页码小于总页数，才显示下一页--%>
-    <c:if test="${page.currentPageCount<page.totalPageCount}">
-
-        <%--把传递过去的页码-1就行了--%>
-        <a href="${pageContext.request.contextPath}/lookCustomer?currentPageCount=${page.currentPageCount+1}">
-            下一页
-        </a>
-    </c:if>
-
-    <input type="text" id="currentPageCount">
-    <input type="button" value="跳转" onclick="goPage()">
-
-    总页数是：${page.totalPageCount}&nbsp;&nbsp;
-
-    总记录数是：${page.totalRecord}
-
     <script type="text/javascript">
 
         /*既然写上了JavaScript代码了，就顺便验证输入框输入的数据是否合法吧*/
@@ -75,5 +40,41 @@
         }
 
     </script>
+</head>
+<body>
+    当前页数是：[${page.currentPageCount}]&nbsp;&nbsp;&nbsp;
+
+    <%--如果当前的页码大于1，才显示上一页--%>
+    <c:if test="${page.currentPageCount>1}">
+
+        <%--把传递过去的页码-1就行了--%>
+        <a href="${pageContext.request.contextPath}/lookCustomer?currentPageCount=${page.currentPageCount-1}">
+            上一页
+        </a>
+    </c:if>
+
+    <%--提供页数的界面--%>
+    <c:forEach var="pageNum" begin="${page.startPage}" end="${page.endPage}">
+        <a href="${pageContext.request.contextPath}/lookCustomer?currentPageCount=${pageNum}">
+            [${pageNum}]&nbsp;
+        </a>
+    </c:forEach>
+
+    <%--如果当前的页码小于总页数，才显示下一页--%>
+    <c:if test="${page.currentPageCount<page.totalPageCount}">
+
+        <%--把传递过去的页码-1就行了--%>
+        <a href="${pageContext.request.contextPath}/lookCustomer?currentPageCount=${page.currentPageCount+1}">
+            下一页
+        </a>
+    </c:if>
+
+    <input type="text" id="currentPageCount">
+    <input type="button" value="跳转" onclick="goPage()">
+
+    总页数是：${page.totalPageCount}&nbsp;&nbsp;
+
+    总记录数是：${page.totalRecord}
+
 </body>
 </html>

@@ -10,6 +10,17 @@
 <html>
 <head>
     <title>Title</title>
+    <script type="text/javascript">
+        function sureDelete() {
+            var b = window.confirm("你确定要删除吗？");
+
+            if(b) {
+                return true;
+            }else {
+                return false;
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -49,17 +60,6 @@
         </c:forEach>
     </table>
 
-    <script type="text/javascript">
-        function sureDelete() {
-            var b = window.confirm("你确定要删除吗？");
-
-            if(b) {
-                return true;
-            }else {
-                return false;
-            }
-        }
-    </script>
     <jsp:include page="/page.jsp"/>
 
 </c:if>

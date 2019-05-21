@@ -52,10 +52,10 @@ public class Page {
         //加减后页数越界的情况
         if (startPage < 1) {
             this.startPage = 1;
-            this.endPage = Math.min(10,this.totalPageCount);;
+            this.endPage = Math.min(10,this.totalPageCount);
         }
         if (endPage > totalPageCount) {
-            this.startPage = this.totalPageCount - 9;
+            this.startPage = Math.max(1,this.totalPageCount-9);
             this.endPage = this.totalPageCount;
         }
     }
