@@ -42,7 +42,7 @@
                 <td>${customer.type}</td>
                 <td>${customer.description}</td>
                 <td>
-                    <a href="${pageContext.request.contextPath}/updateCustomerUI?=${customer.id}">修改</a>
+                    <a href="${pageContext.request.contextPath}/updateCustomerUI?id=${customer.id}">修改</a>
                     <a href="${pageContext.request.contextPath}/deleteCustomer?id=${customer.id}" onclick="return sureDelete()">删除</a>
                 </td>
             </tr>

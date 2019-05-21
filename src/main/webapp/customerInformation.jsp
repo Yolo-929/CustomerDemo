@@ -1,4 +1,3 @@
-<%--@elvariable id="customer" type="model.Customer"--%>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -8,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <html>
 
 <head>
@@ -18,8 +18,7 @@
 </head>
 
 <body onload="pageInit()">
-
-<form action="${pageContext.request.contextPath}/updateCustomer?id=${customer.id}" method="post" onsubmit="makeForm()">
+<form action="${pageContext.request.contextPath}/updateCustomer?id=${customer.id}" method="post" onsubmit="makeForm()" id="form">
     <table border="1px">
         <tr>
             <td>用户名：</td>

@@ -45,23 +45,18 @@ public class Page {
         //开始取数据的位置
         startIndex = (currentPageCount - 1) * linesize;
 
-        //如果当前页小于10，那么开始页为1，结束页为10就行了
-        if (this.currentPageCount <= 10) {
-            this.startPage = 1;
-            this.endPage = 10;
-        } else {
-            startPage = (int)this.currentPageCount - 4;
-            endPage = (int)this.currentPageCount + 5;
+        //定义页面范围
+        startPage = (int)this.currentPageCount - 4;
+        endPage = (int)this.currentPageCount + 5;
 
-            //加减后页数越界的情况
-            if (startPage < 1) {
-                this.startPage = 1;
-                this.endPage = 10;
-            }
-            if (endPage > totalPageCount) {
-                this.startPage = (int)this.currentPageCount - 9;
-                this.endPage = this.totalPageCount;
-            }
+        //加减后页数越界的情况
+        if (startPage < 1) {
+            this.startPage = 1;
+            this.endPage = Math.min(10,this.totalPageCount);;
+        }
+        if (endPage > totalPageCount) {
+            this.startPage = this.totalPageCount - 9;
+            this.endPage = this.totalPageCount;
         }
     }
 

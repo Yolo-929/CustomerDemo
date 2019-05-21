@@ -55,4 +55,14 @@
     <servlet-name>UpdateCustomerUI</servlet-name>
     <url-pattern>/updateCustomerUI</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>UpdateCustomer</servlet-name>
+    <servlet-class>view.UpdateCustomer</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UpdateCustomer</servlet-name>
+    <url-pattern>/updateCustomer</url-pattern>
+  </servlet-mapping>
 </web-app>
